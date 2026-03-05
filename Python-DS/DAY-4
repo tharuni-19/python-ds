@@ -1,0 +1,71 @@
+#Sliding window
+class Solution:
+    def maxSlidingWindow(self, nums,k):
+        n=len(nums)
+        dq=deque()
+        ans=[]
+        for i in range(n):
+            while(dq and dq[0]<=i-k):
+                dq.popleft()
+            while(dq and nums[i]>nums[dq[-1]]):
+                dq.pop()
+            dq.append(i)
+            if(i>=k-1):
+                ans.append(nums[dq[0]])
+        return ans
+#Next greatest element
+class Solution(object):
+    def nextGreaterElement(self, nums1, nums2):
+        stack = []
+        d = {}
+
+        stack.append(nums2[-1])
+        d[nums2[-1]] = -1
+
+        for i in range(len(nums2) - 2, -1, -1):
+            while stack and nums2[i] >= stack[-1]:
+                stack.pop()
+
+            if not stack:
+                d[nums2[i]] = -1
+            else:
+                d[nums2[i]] = stack[-1]
+
+            stack.append(nums2[i])
+
+        for i in range(len(nums1)):
+            nums1[i] = d[nums1[i]]
+
+        return nums1
+#Daily temperature
+class Solution(object):
+    def dailyTemperatures(self, temperatures):
+        n = len(temperatures)
+        ans = [0] * n
+        stack = []
+
+        for i in range(n-1, -1, -1):
+            while stack and temperatures[i] >= temperatures[stack[-1]]:
+                stack.pop()
+
+            if stack:
+                ans[i] = stack[-1] - i
+
+            stack.append(i)
+
+        return ans
+#Valid paranthesis
+class Solution(object):
+    def isValid(self, s):
+       stack = []
+       for c in s:
+           if(c == '('):
+               stack.append(')')
+           elif(c == '['):
+               stack.append(']')
+           elif(c == '{'):
+               stack.append('}')
+           else:
+               if not stack or stack.pop()!=c:
+                  return False
+       return not stack

@@ -1,42 +1,4 @@
-from collections import deque
-
-# Node class
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.left = None
-        self.right = None
-
-# Count leaf nodes recursively
-def count_leaf_nodes(root):
-    if not root:
-        return 0
-    if not root.left and not root.right:
-        return 1
-    return count_leaf_nodes(root.left) + count_leaf_nodes(root.right)
-
-# Build tree from user input
-def build_tree():
-    root_val = input("Enter root node (or 'None'): ")
-    if root_val.lower() == 'none':
-        return None
-
-    root = Node(int(root_val))
-    queue = deque([rootPrinting text
-
-Variables
-
-Data types
-
-User input
-
-Conditions (if, else)
-
-Loops (for, while)
-
-Functions
-
-Lists and dictionari# 104.Maximum Depth of Binary Tree
+# 104.Maximum Depth of Binary Tree
 class Solution(object):
     def maxDepth(self, root):
         if not root:
